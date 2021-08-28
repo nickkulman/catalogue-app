@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
-export interface PeriodicElement {
+export interface UserList {
   avatar: string;
   login: string;
   email: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: UserList[] = [
   {avatar: '********', login: '********', email: '********'},
   {avatar: '******', login: '********', email: '********'},
   {avatar: '******', login: '********', email: '********'},
@@ -16,11 +16,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
 })
-export class TableComponent {
+export class UserListComponent {
 
   displayedColumns: string[] = ['avatar', 'login', 'email'];
   dataSource = ELEMENT_DATA;

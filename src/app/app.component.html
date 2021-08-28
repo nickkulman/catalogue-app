@@ -1,16 +1,19 @@
 <div class="container">
 
-  <div class="header">
-    <app-search></app-search>
-<!--    <app-search></app-search>-->
-    <app-account></app-account>
-
-    <button mat-raised-button style="margin-left: auto; margin-right: 0;">Добавить</button>
-  </div>
+    <app-search
+      (onAdd)="updateUsers($event)"
+    ></app-search>
 
   <hr>
 
-  <app-table> </app-table>
+  <app-user
+    *ngFor="let user of users"
+    [user]="user"
+    (onRemove)="removeUser($event)"
+    (onEdit)="editUser($event)"
+  ></app-user>
+
+<!--  <app-user-list> </app-user-list>-->
 
 </div>
 
