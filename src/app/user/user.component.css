@@ -12,7 +12,10 @@ p {
   margin-right: 200px;
 }
 
-button {
+.buttons {
   margin-left: auto;
+}
+
+button {
   margin-right: 10px;
 }

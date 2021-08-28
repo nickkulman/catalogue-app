@@ -1,1 +1,14 @@
+.header {
+  padding: 0.5rem;
+  /*border: #ccc 1px dotted;*/
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.header p {
+  margin: 0;
+  margin-right: 250px;
+  font-weight: bold;
+}
