@@ -13,9 +13,9 @@
   </div>
 
   <app-user
-    *ngFor="let user of users"
+    *ngFor="let user of users; let i = index"
     [user]="user"
-    (onRemove)="removeUser($event)"
+    (onRemove)="removeUser(i)"
     (onEdit)="editUser($event)"
   ></app-user>
 

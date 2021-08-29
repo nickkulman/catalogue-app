@@ -30,4 +30,10 @@ export class AppComponent {
   removeUser(index: number) {
     this.users.splice(index,1)
   }
+
+  // не работает корректно, как правильно написать этот метод? чтобы именно этот индекс удалить?
+
+  // removeUser(login: string) {
+  //   this.users = this.users.filter( u => u.login !== login)
+  // }
 }

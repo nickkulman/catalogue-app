@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from "../app.component";
 
 @Component({
@@ -7,7 +7,7 @@ import {User} from "../app.component";
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
 
   @Output() onAdd: EventEmitter<User> = new EventEmitter<User>()
 
@@ -17,7 +17,14 @@ export class SearchComponent implements OnInit{
 
   constructor() {}
 
+  form!: FormGroup
+
   ngOnInit(){
+    this.form = new FormGroup({})
+  }
+
+  submit() {
+
   }
 
   emailFormControl = new FormControl('', [
