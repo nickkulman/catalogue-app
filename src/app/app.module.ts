@@ -14,13 +14,18 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 import { UserListComponent } from './user-list/user-list.component';
 import { UserComponent } from './user/user.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     UserListComponent,
-    UserComponent
+    UserComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,10 @@ import { UserComponent } from './user/user.component';
     MatButtonModule,
     MatInputModule,
     MatTableModule,
-    ReactiveFormsModule
+    MatIconModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule
 
   ],
   providers: [],

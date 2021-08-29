@@ -1,0 +1,31 @@
+<div class="dialog">
+
+  <h2 mat-dialog-title>Редактировать аккаунт:</h2>
+
+  <div mat-dialog-content>
+
+
+    <mat-form-field appearance="fill" style="margin-right: 10px">
+      <mat-label>Изменить логин</mat-label>
+      <input matInput placeholder="Login">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Изменить email</mat-label>
+      <input matInput placeholder="Email">
+
+    </mat-form-field>
+
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="confirmChanges()" color="primary">
+      Сохранить
+    </button>
+    <button mat-button (click)="dialogRef.close()">
+      Отмена
+    </button>
+  </div>
+
+</div>

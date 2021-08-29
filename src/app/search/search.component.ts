@@ -11,38 +11,43 @@ export class SearchComponent implements OnInit {
 
   @Output() onAdd: EventEmitter<User> = new EventEmitter<User>()
 
-  avatar =''
-  email =''
-  login = ''
+  user!: User;
+
+  email!: FormControl;
+  login!: FormControl;
+  form!: FormGroup;
 
   constructor() {}
 
-  form!: FormGroup
-
   ngOnInit(){
-    this.form = new FormGroup({})
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]);
+
+    this.login = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.form = new FormGroup({
+      email: this.email,
+      login: this.login
+    });
+
+    this.form.valueChanges.subscribe((value) => {
+      this.user = value;
+    });
   }
 
   submit() {
 
   }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
 
   addUser() {
-    if (this.email.trim() && this.login.trim()) {
-      let user: User = {
-        avatar: 'someUser',
-        login: this.login,
-        email: this.email,
-      }
-
-      this.onAdd.emit(user)
-
-      this.email = this.login = ''
+    if (this.user.email.trim() && this.user.login.trim()) {
+      this.onAdd.emit({...this.user, avatar: 'SomeUser'});
+      this.form.reset();
     }
   }
 
