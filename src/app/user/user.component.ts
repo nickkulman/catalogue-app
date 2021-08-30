@@ -2,7 +2,6 @@ import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {User} from "../app.component";
 import {MatDialog} from "@angular/material/dialog";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
-import {GithubDataService} from "../github-data.service";
 
 @Component({
   selector: 'app-user',
@@ -18,7 +17,7 @@ export class UserComponent implements OnInit {
 
   avatar = ''
 
-  constructor(public dialog: MatDialog, public dataService: GithubDataService) {}
+  constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     let dialog = this.dialog.open(EditDialogComponent, {data: {...this.user}});
@@ -36,11 +35,12 @@ export class UserComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
-    this.user.avatar = this.dataService.getAvatar()
   }
 
+  userAvatar(): string {
+    // return this.user.avatar;
+    return 'https://avatars.githubusercontent.com/u/60517199?v=4'
+  }
 
 }
-

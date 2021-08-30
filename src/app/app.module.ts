@@ -21,6 +21,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {GithubDataService} from "./github-data.service";
 import { HttpClientModule } from '@angular/common/http';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     SearchComponent,
     UserListComponent,
     UserComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

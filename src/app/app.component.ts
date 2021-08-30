@@ -34,4 +34,6 @@ export class AppComponent {
     this.users.splice(index,1)
   }
 
+
+
 }

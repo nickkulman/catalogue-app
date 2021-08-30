@@ -1,6 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from "../app.component";
+import {GithubDataService} from '../github-data.service';
+import {MatDialog} from "@angular/material/dialog";
+import {MessageComponent} from "../message/message.component";
 
 @Component({
   selector: 'app-search',
@@ -17,7 +20,7 @@ export class SearchComponent implements OnInit {
   login!: FormControl;
   form!: FormGroup;
 
-  constructor() {}
+  constructor(public dataService: GithubDataService, public message: MatDialog) {}
 
   ngOnInit(){
     this.email = new FormControl('', [
@@ -39,18 +42,36 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  submit() {
-
-  }
 
 
   addUser() {
     if (this.user.email.trim() && this.user.login.trim()) {
+      this.dataService.getGithubUser(this.user.login).subscribe(user => {
+        if (user) {
+          this.onAdd.emit({...this.user, avatar: user.avatar_url});
 
+          this.openMessage(`Пользователь ${this.user.login} добавлен`);
 
-      this.onAdd.emit({...this.user, avatar: 'SomeUser'});
-      this.form.reset();
+        } else {
+
+          this.openMessage(`Пользователь ${this.user.login} не найден`);
+        }
+
+        this.form.reset();
+      });
     }
+  }
+
+
+  openMessage(phrase: string) {
+    let message = this.message.open(MessageComponent);
+
+    message.afterClosed()
+      // .subscribe(user => {
+      //   if (user) {
+      //     this.user = {...this.user, ...user};
+      //   }
+      // });
   }
 
 }

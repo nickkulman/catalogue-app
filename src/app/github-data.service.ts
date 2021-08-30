@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from "./app.component";
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 
 @Injectable({
@@ -9,19 +10,21 @@ import { Observable, throwError } from 'rxjs';
 })
 export class GithubDataService {
 
-  user!: User;
-
   constructor(private http: HttpClient) { }
 
-  public avatar: string = 'https://avatars.githubusercontent.com/u/60517199?v=4'
+  public defaultAvatar = 'https://avatars.githubusercontent.com/u/60517199?v=4';
 
-  getAvatar(): any {
+  getGithubUser(login: string): Observable<any> {
 
-    // return this.avatar
-
-    this.http.get('https://api.github.com/users/')
-      .subscribe((data: any) => this.user.login == data.login ? this.avatar = data['avatar_url'] : alert('Такой аккаунт не зарегистрирован')
-      )
+    return this.http.get(`https://api.github.com/users/${login}`)
+      .pipe(
+        map((data: any) => {
+          if (!data.login) {
+            return null;
+          }
+          return {login: data.login, avatar: (data.avatar_url || this.defaultAvatar)};
+        })
+      );
   }
-
 }
+
