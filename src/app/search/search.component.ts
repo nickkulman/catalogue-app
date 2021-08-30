@@ -46,6 +46,8 @@ export class SearchComponent implements OnInit {
 
   addUser() {
     if (this.user.email.trim() && this.user.login.trim()) {
+
+
       this.onAdd.emit({...this.user, avatar: 'SomeUser'});
       this.form.reset();
     }

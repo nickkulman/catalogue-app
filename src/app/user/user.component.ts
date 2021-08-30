@@ -2,6 +2,7 @@ import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {User} from "../app.component";
 import {MatDialog} from "@angular/material/dialog";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
+import {GithubDataService} from "../github-data.service";
 
 @Component({
   selector: 'app-user',
@@ -14,33 +15,32 @@ export class UserComponent implements OnInit {
   @Output() onRemove = new EventEmitter()
   @Output() onEdit = new EventEmitter()
 
-  // @Output() user: User
 
-  constructor(public dialog: MatDialog) {}
+  avatar = ''
 
-  openDialog() {
-    let dialog = this.dialog.open(EditDialogComponent);
+  constructor(public dialog: MatDialog, public dataService: GithubDataService) {}
+
+  openDialog(): void {
+    let dialog = this.dialog.open(EditDialogComponent, {data: {...this.user}});
+
     dialog.afterClosed()
       .subscribe(user => {
-        if (true) {
-          // edit user
-        } else {
-          // User clicked 'Cancel' or clicked outside the dialog
+        if (user) {
+          this.user = {...this.user, ...user};
         }
       });
   }
 
-  removeUser() {
-    this.onRemove.emit(this.user)
+  removeUser(): void {
+    this.onRemove.emit(this.user);
   }
 
-  // editUser() {
-  //   this.onEdit.emit(this.user)
-  // }
 
 
   ngOnInit(): void {
+    this.user.avatar = this.dataService.getAvatar()
   }
 
 
 }
+

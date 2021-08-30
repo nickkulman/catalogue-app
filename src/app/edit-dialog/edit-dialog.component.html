@@ -3,27 +3,28 @@
   <h2 mat-dialog-title>Редактировать аккаунт:</h2>
 
   <div mat-dialog-content>
+    <form [formGroup]="form">
 
+      <mat-form-field appearance="fill" style="margin-right: 10px">
+        <mat-label>Изменить логин</mat-label>
+        <input [formControl]="login" matInput placeholder="Login">
 
-    <mat-form-field appearance="fill" style="margin-right: 10px">
-      <mat-label>Изменить логин</mat-label>
-      <input matInput placeholder="Login">
+      </mat-form-field>
 
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Изменить email</mat-label>
+        <input [formControl]="email" matInput placeholder="Email">
 
-    <mat-form-field appearance="fill">
-      <mat-label>Изменить email</mat-label>
-      <input matInput placeholder="Email">
+      </mat-form-field>
 
-    </mat-form-field>
-
+    </form>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button (click)="confirmChanges()" color="primary">
+    <button mat-button [mat-dialog-close]="user" color="primary">
       Сохранить
     </button>
-    <button mat-button (click)="dialogRef.close()">
+    <button mat-button mat-dialog-close>
       Отмена
     </button>
   </div>

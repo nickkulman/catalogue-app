@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { MatDialogRef} from "@angular/material/dialog";
-import {User} from "../app.component";
+import {Component, Inject, OnInit} from '@angular/core';
+import {User} from '../app.component';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -11,22 +12,32 @@ import {User} from "../app.component";
 
 export class EditDialogComponent implements OnInit {
 
-  @Input() user!: User
-  @Output() onChange: EventEmitter<User> = new EventEmitter<User>()
+  email!: FormControl;
+  login!: FormControl;
+  form!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<EditDialogComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public user: User) {
+    console.log('data', user);
   }
 
   ngOnInit(): void {
-  }
+    this.email = new FormControl(this.user.email, [
+      Validators.required,
+      Validators.email
+    ]);
 
-  confirmChanges() {
+    this.login = new FormControl(this.user.login, [
+      Validators.required
+    ]);
 
-      this.onChange.emit({...this.user, avatar: 'SomeUser'}); //здесь логика по изменению
+    this.form = new FormGroup({
+      email: this.email,
+      login: this.login
+    });
 
-      this.dialogRef.close(this.user);
-
-
+    this.form.valueChanges.subscribe((value) => {
+      this.user = value;
+    });
   }
 }
 

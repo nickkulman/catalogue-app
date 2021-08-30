@@ -18,6 +18,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {GithubDataService} from "./github-data.service";
 
 @NgModule({
   declarations: [
@@ -38,10 +40,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatIconModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
 
   ],
-  providers: [],
+  providers: [
+    GithubDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
