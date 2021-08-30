@@ -20,6 +20,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {GithubDataService} from "./github-data.service";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {GithubDataService} from "./github-data.service";
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatButtonModule,
     MatInputModule,
     MatTableModule,
