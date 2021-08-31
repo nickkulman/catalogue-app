@@ -10,7 +10,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 export class MessageComponent implements OnInit {
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public warning: {warning: string})  { console.log(warning) }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {warning: string})  {  }
 
 
   ngOnInit(): void {

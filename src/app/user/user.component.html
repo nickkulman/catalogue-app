@@ -1,6 +1,6 @@
 <div class="item">
 
-  <!--  <p>{{user.avatar}}</p>-->
+  <div class="wrapper">
   <mat-card >
     <img *ngIf="user.avatar" mat-card-avatar
          [src] = "user.avatar"
@@ -8,6 +8,8 @@
   </mat-card>
   <p>{{user.login}}</p>
   <p>{{user.email}}</p>
+
+  </div>
 
   <div class="buttons">
     <button mat-raised-button (click)="removeUser()" > <mat-icon>delete</mat-icon> </button>

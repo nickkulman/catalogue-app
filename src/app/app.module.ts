@@ -12,7 +12,6 @@ import {MatTableModule} from '@angular/material/table';
 import { SearchComponent } from './search/search.component';
 import {ReactiveFormsModule} from "@angular/forms";
 
-import { UserListComponent } from './user-list/user-list.component';
 import { UserComponent } from './user/user.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from '@angular/material/dialog';
@@ -27,7 +26,6 @@ import { MessageComponent } from './message/message.component';
   declarations: [
     AppComponent,
     SearchComponent,
-    UserListComponent,
     UserComponent,
     EditDialogComponent,
     MessageComponent

@@ -59,8 +59,11 @@ export class SearchComponent implements OnInit {
         }
 
         this.form.reset();
+          for (const control in this.form.controls) {
+            this.form.controls[control].setErrors(null);
+          }
       },
-        error => this.openMessage(`Пользователь ${this.user.login} не найден`));
+        () => this.openMessage(`Пользователь ${this.user.login} не найден`));
     }
   }
 
