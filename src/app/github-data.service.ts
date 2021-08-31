@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {User} from "./app.component";
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 
 
@@ -12,7 +11,7 @@ export class GithubDataService {
 
   constructor(private http: HttpClient) { }
 
-  public defaultAvatar = 'https://avatars.githubusercontent.com/u/60517199?v=4';
+  public defaultAvatar = './assets/github-default-icon.png';
 
   getGithubUser(login: string): Observable<any> {
 

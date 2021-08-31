@@ -31,7 +31,5 @@ export class UserComponent implements OnInit {
     this.onRemove.emit(this.user);
   }
 
-
   ngOnInit(): void {  }
-
 }

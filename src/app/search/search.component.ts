@@ -22,7 +22,8 @@ export class SearchComponent implements OnInit {
   login!: FormControl;
   form!: FormGroup;
 
-  @Input() users!: User[]
+  @Input() users!: User[];
+  error: any;
 
 
   constructor(public dataService: GithubDataService, public message: MatDialog) {}
@@ -48,38 +49,24 @@ export class SearchComponent implements OnInit {
   }
 
 
-
   addUser() {
     if (this.user.email.trim() && this.user.login.trim()) {
       this.dataService.getGithubUser(this.user.login).subscribe(user => {
         if (user) {
 
           this.onAdd.emit({...this.user, avatar: user.avatar});
-          this.openMessage(`Пользователь ${this.user.login} добавлен`);
-
-        }
-
-        //if (users.indexOf(user) !=-1) {
-            //this.openMessage(`Пользователь ${this.user.login} уже находится в каталоге`);
-        // }
-
-        if (user == false) {
-          this.openMessage(`Пользователь ${this.user.login} не найден`);
+          // this.openMessage(`Пользователь ${this.user.login} добавлен`);
         }
 
         this.form.reset();
-      });
+      },
+        error => this.openMessage(`Пользователь ${this.user.login} не найден`));
     }
   }
 
 
-
-
   openMessage(warning: string) {
     this.message.open(MessageComponent, {data: {warning}});
-
   }
-
-
 
 }
