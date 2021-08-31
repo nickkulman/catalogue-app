@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {User} from '../app.component';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
@@ -10,8 +9,8 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class MessageComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public user: User) { }
 
+  constructor(@Inject(MAT_DIALOG_DATA) public warning: {warning: string})  { console.log(warning) }
 
 
   ngOnInit(): void {

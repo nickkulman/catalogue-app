@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from "../app.component";
 import {GithubDataService} from '../github-data.service';
 import {MatDialog} from "@angular/material/dialog";
 import {MessageComponent} from "../message/message.component";
+
 
 @Component({
   selector: 'app-search',
@@ -14,11 +15,15 @@ export class SearchComponent implements OnInit {
 
   @Output() onAdd: EventEmitter<User> = new EventEmitter<User>()
 
+
   user!: User;
 
   email!: FormControl;
   login!: FormControl;
   form!: FormGroup;
+
+  @Input() users!: User[]
+
 
   constructor(public dataService: GithubDataService, public message: MatDialog) {}
 
@@ -48,12 +53,17 @@ export class SearchComponent implements OnInit {
     if (this.user.email.trim() && this.user.login.trim()) {
       this.dataService.getGithubUser(this.user.login).subscribe(user => {
         if (user) {
-          this.onAdd.emit({...this.user, avatar: user.avatar_url});
 
+          this.onAdd.emit({...this.user, avatar: user.avatar});
           this.openMessage(`Пользователь ${this.user.login} добавлен`);
 
-        } else {
+        }
 
+        //if (users.indexOf(user) !=-1) {
+            //this.openMessage(`Пользователь ${this.user.login} уже находится в каталоге`);
+        // }
+
+        if (user == false) {
           this.openMessage(`Пользователь ${this.user.login} не найден`);
         }
 
@@ -63,15 +73,13 @@ export class SearchComponent implements OnInit {
   }
 
 
-  openMessage(phrase: string) {
-    let message = this.message.open(MessageComponent);
 
-    message.afterClosed()
-      // .subscribe(user => {
-      //   if (user) {
-      //     this.user = {...this.user, ...user};
-      //   }
-      // });
+
+  openMessage(warning: string) {
+    this.message.open(MessageComponent, {data: {warning}});
+
   }
+
+
 
 }

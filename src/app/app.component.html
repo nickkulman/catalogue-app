@@ -16,7 +16,6 @@
     *ngFor="let user of users; let i = index"
     [user]="user"
     (onRemove)="removeUser(i)"
-    (onEdit)="editUser($event)"
   ></app-user>
 
 <!--  <app-user-list> </app-user-list>-->

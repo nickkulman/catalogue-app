@@ -12,10 +12,7 @@ export class UserComponent implements OnInit {
 
   @Input() user!: User
   @Output() onRemove = new EventEmitter()
-  @Output() onEdit = new EventEmitter()
 
-
-  avatar = ''
 
   constructor(public dialog: MatDialog) {}
 
@@ -35,12 +32,6 @@ export class UserComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  }
-
-  userAvatar(): string {
-    // return this.user.avatar;
-    return 'https://avatars.githubusercontent.com/u/60517199?v=4'
-  }
+  ngOnInit(): void {  }
 
 }
