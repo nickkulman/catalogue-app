@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
     dialog.afterClosed()
       .subscribe(user => {
         if (user) {
-          this.user = {...this.user, ...user};
+          Object.assign(this.user, user);
         }
       });
   }
