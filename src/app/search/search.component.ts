@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {User} from "../app.component";
+
 import {GithubDataService} from '../github-data.service';
 import {MatDialog} from "@angular/material/dialog";
 import {MessageComponent} from "../message/message.component";
+import {User} from "../user-list.service";
 
 
 @Component({

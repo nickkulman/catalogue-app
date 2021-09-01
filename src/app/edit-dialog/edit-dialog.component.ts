@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {User} from '../app.component';
+
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from "../user-list.service";
 
 
 @Component({
@@ -31,8 +32,8 @@ export class EditDialogComponent implements OnInit {
     ]);
 
     this.form = new FormGroup({
-      email: this.email,
-      login: this.login
+      email: this.email
+      // login: this.login
     });
 
     this.form.valueChanges.subscribe((value) => {

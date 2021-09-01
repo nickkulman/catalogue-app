@@ -21,6 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import {GithubDataService} from "./github-data.service";
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './message/message.component';
+import {UserListService} from "./user-list.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MessageComponent } from './message/message.component';
 
   ],
   providers: [
-    GithubDataService
+    GithubDataService,
+    UserListService
   ],
   bootstrap: [AppComponent]
 })

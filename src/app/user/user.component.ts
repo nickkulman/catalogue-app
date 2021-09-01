@@ -1,7 +1,8 @@
 import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
-import {User} from "../app.component";
+
 import {MatDialog} from "@angular/material/dialog";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
+import {User} from "../user-list.service";
 
 @Component({
   selector: 'app-user',

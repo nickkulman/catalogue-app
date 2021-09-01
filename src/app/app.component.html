@@ -7,15 +7,15 @@
   <hr>
 
   <div class="header">
-    <p>Avatar</p>
-    <p>Login</p>
-    <p>Email</p>
+    <div>Avatar</div>
+    <div>Login</div>
+    <div>Email</div>
   </div>
 
   <app-user
-    *ngFor="let user of users; let i = index"
+    *ngFor="let user of userListService.usersSubject$ | async"
     [user]="user"
-    (onRemove)="removeUser(i)"
+    (onRemove)="removeUser(user)"
   ></app-user>
 
 
