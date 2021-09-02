@@ -18,12 +18,10 @@ export class EditDialogComponent implements OnInit {
   form!: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public user: User) {
-    console.log('data', user);
   }
 
   ngOnInit(): void {
     this.email = new FormControl(this.user.email, [
-      Validators.required,
       Validators.email
     ]);
 
@@ -32,8 +30,8 @@ export class EditDialogComponent implements OnInit {
     ]);
 
     this.form = new FormGroup({
-      email: this.email
-      // login: this.login
+      email: this.email,
+      login: this.login
     });
 
     this.form.valueChanges.subscribe((value) => {

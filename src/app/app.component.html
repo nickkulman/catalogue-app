@@ -1,8 +1,6 @@
 <div class="container">
 
-    <app-search
-      (onAdd)="updateUsers($event)"
-    ></app-search>
+  <app-search></app-search>
 
   <hr>
 
@@ -15,7 +13,6 @@
   <app-user
     *ngFor="let user of userListService.usersSubject$ | async"
     [user]="user"
-    (onRemove)="removeUser(user)"
   ></app-user>
 
 

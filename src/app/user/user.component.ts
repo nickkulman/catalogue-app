@@ -1,8 +1,8 @@
-import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import {MatDialog} from "@angular/material/dialog";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
-import {User} from "../user-list.service";
+import {User, UserListService} from '../user-list.service';
 
 @Component({
   selector: 'app-user',
@@ -11,11 +11,9 @@ import {User} from "../user-list.service";
 })
 export class UserComponent implements OnInit {
 
-  @Input() user!: User
-  @Output() onRemove = new EventEmitter()
+  @Input() user!: User;
 
-
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public userListService: UserListService) {}
 
   openDialog(): void {
     let dialog = this.dialog.open(EditDialogComponent, {data: {...this.user}});
@@ -23,13 +21,13 @@ export class UserComponent implements OnInit {
     dialog.afterClosed()
       .subscribe(user => {
         if (user) {
-          Object.assign(this.user, user);
+          this.userListService.updateUser(user);
         }
       });
   }
 
   removeUser(): void {
-    this.onRemove.emit(this.user);
+    this.userListService.removeUser(this.user);
   }
 
   ngOnInit(): void {  }
